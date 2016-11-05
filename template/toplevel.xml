@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Tiers>
+  <Version>1.49</Version>
+  <DeviceType>KEYBOARD</DeviceType>
+  <PID>544</PID>
+  <Tier level="0">
+    <UUID>static</UUID>
+  </Tier>
+  <Tier level="1">
+    <UUID>reactive</UUID>
+  </Tier>
+</Tiers>

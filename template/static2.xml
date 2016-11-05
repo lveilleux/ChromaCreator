@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<RGBLayer effect="STATIC" enabled="1">
+  <Version>1.49</Version>
+  <LayerKeys>
+    <LayerKey row="5" column="7" id="0" />
+    <LayerKey row="0" column="1" id="1" />
+    <LayerKey row="0" column="3" id="1" />
+    <LayerKey row="0" column="4" id="1" />
+    <LayerKey row="0" column="5" id="1" />
+    <LayerKey row="0" column="6" id="1" />
+    <LayerKey row="0" column="7" id="1" />
+    <LayerKey row="1" column="1" id="1" />
+    <LayerKey row="1" column="2" id="1" />
+    <LayerKey row="1" column="3" id="1" />
+    <LayerKey row="1" column="4" id="1" />
+    <LayerKey row="1" column="5" id="1" />
+    <LayerKey row="1" column="6" id="1" />
+    <LayerKey row="2" column="1" id="1" />
+    <LayerKey row="2" column="2" id="1" />
+    <LayerKey row="2" column="3" id="1" />
+    <LayerKey row="2" column="4" id="1" />
+    <LayerKey row="2" column="5" id="1" />
+    <LayerKey row="2" column="6" id="1" />
+    <LayerKey row="3" column="1" id="1" />
+    <LayerKey row="3" column="2" id="1" />
+    <LayerKey row="3" column="3" id="1" />
+    <LayerKey row="3" column="4" id="1" />
+    <LayerKey row="3" column="5" id="1" />
+    <LayerKey row="3" column="6" id="1" />
+    <LayerKey row="4" column="1" id="1" />
+    <LayerKey row="4" column="3" id="1" />
+    <LayerKey row="4" column="4" id="1" />
+    <LayerKey row="4" column="5" id="1" />
+    <LayerKey row="4" column="6" id="1" />
+    <LayerKey row="5" column="1" id="1" />
+    <LayerKey row="5" column="5" id="1" />
+    <LayerKey row="5" column="2" id="1" />
+    <LayerKey row="5" column="3" id="1" />
+    <LayerKey row="0" column="8" id="2" />
+    <LayerKey row="0" column="9" id="2" />
+    <LayerKey row="0" column="10" id="2" />
+    <LayerKey row="0" column="11" id="2" />
+    <LayerKey row="0" column="12" id="2" />
+    <LayerKey row="0" column="13" id="2" />
+    <LayerKey row="0" column="14" id="2" />
+    <LayerKey row="1" column="15" id="2" />
+    <LayerKey row="2" column="15" id="2" />
+    <LayerKey row="1" column="7" id="2" />
+    <LayerKey row="1" column="8" id="2" />
+    <LayerKey row="1" column="9" id="2" />
+    <LayerKey row="1" column="10" id="2" />
+    <LayerKey row="1" column="11" id="2" />
+    <LayerKey row="1" column="12" id="2" />
+    <LayerKey row="1" column="13" id="2" />
+    <LayerKey row="1" column="14" id="2" />
+    <LayerKey row="2" column="7" id="2" />
+    <LayerKey row="2" column="8" id="2" />
+    <LayerKey row="2" column="9" id="2" />
+    <LayerKey row="2" column="10" id="2" />
+    <LayerKey row="2" column="11" id="2" />
+    <LayerKey row="2" column="12" id="2" />
+    <LayerKey row="2" column="13" id="2" />
+    <LayerKey row="2" column="14" id="2" />
+    <LayerKey row="3" column="7" id="2" />
+    <LayerKey row="3" column="8" id="2" />
+    <LayerKey row="3" column="9" id="2" />
+    <LayerKey row="3" column="10" id="2" />
+    <LayerKey row="3" column="11" id="2" />
+    <LayerKey row="3" column="12" id="2" />
+    <LayerKey row="3" column="14" id="2" />
+    <LayerKey row="4" column="7" id="2" />
+    <LayerKey row="4" column="8" id="2" />
+    <LayerKey row="4" column="9" id="2" />
+    <LayerKey row="4" column="10" id="2" />
+    <LayerKey row="4" column="11" id="2" />
+    <LayerKey row="4" column="12" id="2" />
+    <LayerKey row="4" column="14" id="2" />
+    <LayerKey row="5" column="11" id="2" />
+    <LayerKey row="5" column="12" id="2" />
+    <LayerKey row="5" column="14" id="2" />
+    <LayerKey row="5" column="15" id="2" />
+    <LayerKey row="4" column="16" id="2" />
+    <LayerKey row="5" column="16" id="2" />
+    <LayerKey row="5" column="17" id="2" />
+  </LayerKeys>
+  <Groups>
+    <Group id="0">
+      <EfxStatic>
+        <Color random="0">
+          <Red>0</Red>
+          <Green>255</Green>
+          <Blue>0</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="1">
+      <EfxStatic>
+        <Color random="0">
+          <Red>255</Red>
+          <Green>0</Green>
+          <Blue>0</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="2">
+      <EfxStatic>
+        <Color random="0">
+          <Red>0</Red>
+          <Green>0</Green>
+          <Blue>255</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+  </Groups>
+</RGBLayer>

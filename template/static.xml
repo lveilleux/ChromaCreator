@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<RGBLayer effect="STATIC" enabled="1">
+  <Version>1.49</Version>
+  <LayerKeys>
+    <LayerKey row="0" column="1" id="0" />
+  </LayerKeys>
+  <Groups>
+    <Group id="0">
+      <EfxStatic>
+        <Color random="0">
+          <Red>0</Red>
+          <Green>255</Green>
+          <Blue>0</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+  </Groups>
+</RGBLayer>

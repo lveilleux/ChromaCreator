@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RGBLayer effect="STATIC" enabled="1">
+  <Version>1.49</Version>
+  <LayerKeys>
+    <LayerKey row="0" column="1" id="0" />
+    <LayerKey row="0" column="3" id="1" />
+    <LayerKey row="0" column="4" id="2" />
+    <LayerKey row="0" column="5" id="3" />
+    <LayerKey row="0" column="6" id="4" />
+    <LayerKey row="0" column="7" id="5" />
+    <LayerKey row="0" column="8" id="6" />
+    <LayerKey row="0" column="9" id="7" />
+    <LayerKey row="0" column="10" id="8" />
+    <LayerKey row="0" column="11" id="9" />
+    <LayerKey row="0" column="12" id="10" />
+    <LayerKey row="0" column="13" id="11" />
+    <LayerKey row="0" column="14" id="12" />
+    <LayerKey row="0" column="15" id="13" />
+    <LayerKey row="0" column="16" id="14" />
+    <LayerKey row="0" column="17" id="15" />
+    <LayerKey row="0" column="20" id="16" />
+    <LayerKey row="1" column="0" id="17" />
+    <LayerKey row="1" column="1" id="18" />
+    <LayerKey row="1" column="2" id="19" />
+    <LayerKey row="1" column="3" id="20" />
+    <LayerKey row="1" column="4" id="21" />
+    <LayerKey row="1" column="5" id="22" />
+    <LayerKey row="1" column="6" id="23" />
+    <LayerKey row="1" column="7" id="24" />
+    <LayerKey row="1" column="8" id="25" />
+    <LayerKey row="1" column="9" id="26" />
+    <LayerKey row="1" column="10" id="27" />
+    <LayerKey row="1" column="11" id="28" />
+    <LayerKey row="1" column="12" id="29" />
+    <LayerKey row="1" column="13" id="30" />
+    <LayerKey row="1" column="14" id="31" />
+    <LayerKey row="1" column="15" id="32" />
+    <LayerKey row="1" column="16" id="33" />
+    <LayerKey row="1" column="17" id="34" />
+    <LayerKey row="1" column="18" id="35" />
+    <LayerKey row="1" column="19" id="36" />
+    <LayerKey row="1" column="20" id="37" />
+    <LayerKey row="1" column="21" id="38" />
+    <LayerKey row="2" column="0" id="39" />
+    <LayerKey row="2" column="1" id="40" />
+    <LayerKey row="2" column="2" id="41" />
+    <LayerKey row="2" column="3" id="42" />
+    <LayerKey row="2" column="4" id="43" />
+    <LayerKey row="2" column="5" id="44" />
+    <LayerKey row="2" column="6" id="45" />
+    <LayerKey row="2" column="7" id="46" />
+    <LayerKey row="2" column="8" id="47" />
+    <LayerKey row="2" column="9" id="48" />
+    <LayerKey row="2" column="10" id="49" />
+    <LayerKey row="2" column="11" id="50" />
+    <LayerKey row="2" column="12" id="51" />
+    <LayerKey row="2" column="13" id="52" />
+    <LayerKey row="2" column="14" id="53" />
+    <LayerKey row="2" column="15" id="54" />
+    <LayerKey row="2" column="16" id="55" />
+    <LayerKey row="2" column="17" id="56" />
+    <LayerKey row="2" column="18" id="57" />
+    <LayerKey row="2" column="19" id="58" />
+    <LayerKey row="2" column="20" id="59" />
+    <LayerKey row="2" column="21" id="60" />
+    <LayerKey row="3" column="0" id="61" />
+    <LayerKey row="3" column="1" id="62" />
+    <LayerKey row="3" column="2" id="63" />
+    <LayerKey row="3" column="3" id="64" />
+    <LayerKey row="3" column="4" id="65" />
+    <LayerKey row="3" column="5" id="66" />
+    <LayerKey row="3" column="6" id="67" />
+    <LayerKey row="3" column="7" id="68" />
+    <LayerKey row="3" column="8" id="69" />
+    <LayerKey row="3" column="9" id="70" />
+    <LayerKey row="3" column="10" id="71" />
+    <LayerKey row="3" column="11" id="72" />
+    <LayerKey row="3" column="12" id="73" />
+    <LayerKey row="3" column="14" id="74" />
+    <LayerKey row="3" column="18" id="75" />
+    <LayerKey row="3" column="19" id="76" />
+    <LayerKey row="3" column="20" id="77" />
+    <LayerKey row="4" column="0" id="78" />
+    <LayerKey row="4" column="1" id="79" />
+    <LayerKey row="4" column="3" id="80" />
+    <LayerKey row="4" column="4" id="81" />
+    <LayerKey row="4" column="5" id="82" />
+    <LayerKey row="4" column="6" id="83" />
+    <LayerKey row="4" column="7" id="84" />
+    <LayerKey row="4" column="8" id="85" />
+    <LayerKey row="4" column="9" id="86" />
+    <LayerKey row="4" column="10" id="87" />
+    <LayerKey row="4" column="11" id="88" />
+    <LayerKey row="4" column="12" id="89" />
+    <LayerKey row="4" column="14" id="90" />
+    <LayerKey row="4" column="16" id="91" />
+    <LayerKey row="4" column="18" id="92" />
+    <LayerKey row="4" column="19" id="93" />
+    <LayerKey row="4" column="20" id="94" />
+    <LayerKey row="4" column="21" id="95" />
+    <LayerKey row="5" column="0" id="96" />
+    <LayerKey row="5" column="1" id="97" />
+    <LayerKey row="5" column="2" id="98" />
+    <LayerKey row="5" column="3" id="99" />
+    <LayerKey row="5" column="7" id="100" />
+    <LayerKey row="5" column="11" id="101" />
+    <LayerKey row="5" column="12" id="102" />
+    <LayerKey row="5" column="13" id="103" />
+    <LayerKey row="5" column="14" id="104" />
+    <LayerKey row="5" column="15" id="105" />
+    <LayerKey row="5" column="16" id="106" />
+    <LayerKey row="5" column="17" id="107" />
+    <LayerKey row="5" column="19" id="108" />
+    <LayerKey row="5" column="20" id="109" />
+  </LayerKeys>
+  <Groups>
+    <Group id="62">
+      <EfxStatic>
+        <Color random="0">
+          <Red>200</Red>
+          <Green>135</Green>
+          <Blue>203</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="67">
+      <EfxStatic>
+        <Color random="0">
+          <Red>165</Red>
+          <Green>91</Green>
+          <Blue>170</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="68">
+      <EfxStatic>
+        <Color random="0">
+          <Red>237</Red>
+          <Green>216</Green>
+          <Blue>249</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="70">
+      <EfxStatic>
+        <Color random="0">
+          <Red>35</Red>
+          <Green>16</Green>
+          <Blue>62</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="61">
+      <EfxStatic>
+        <Color random="0">
+          <Red>222</Red>
+          <Green>188</Green>
+          <Blue>249</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="100">
+      <EfxStatic>
+        <Color random="0">
+          <Red>195</Red>
+          <Green>126</Green>
+          <Blue>233</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="21">
+      <EfxStatic>
+        <Color random="0">
+          <Red>93</Red>
+          <Green>10</Green>
+          <Blue>118</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="46">
+      <EfxStatic>
+        <Color random="0">
+          <Red>222</Red>
+          <Green>228</Green>
+          <Blue>242</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="41">
+      <EfxStatic>
+        <Color random="0">
+          <Red>220</Red>
+          <Green>163</Green>
+          <Blue>242</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="81">
+      <EfxStatic>
+        <Color random="0">
+          <Red>136</Red>
+          <Green>80</Green>
+          <Blue>167</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="85">
+      <EfxStatic>
+        <Color random="0">
+          <Red>11</Red>
+          <Green>1</Green>
+          <Blue>36</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="25">
+      <EfxStatic>
+        <Color random="0">
+          <Red>214</Red>
+          <Green>50</Green>
+          <Blue>225</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="47">
+      <EfxStatic>
+        <Color random="0">
+          <Red>82</Red>
+          <Green>31</Green>
+          <Blue>108</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="24">
+      <EfxStatic>
+        <Color random="0">
+          <Red>229</Red>
+          <Green>159</Green>
+          <Blue>167</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="49">
+      <EfxStatic>
+        <Color random="0">
+          <Red>58</Red>
+          <Green>53</Green>
+          <Blue>120</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="7">
+      <EfxStatic>
+        <Color random="0">
+          <Red>39</Red>
+          <Green>38</Green>
+          <Blue>98</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="42">
+      <EfxStatic>
+        <Color random="0">
+          <Red>159</Red>
+          <Green>181</Green>
+          <Blue>218</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="71">
+      <EfxStatic>
+        <Color random="0">
+          <Red>180</Red>
+          <Green>186</Green>
+          <Blue>255</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="0">
+      <EfxStatic>
+        <Color random="0">
+          <Red>32</Red>
+          <Green>40</Green>
+          <Blue>113</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="33">
+      <EfxStatic>
+        <Color random="0">
+          <Red>166</Red>
+          <Green>78</Green>
+          <Blue>242</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="102">
+      <EfxStatic>
+        <Color random="0">
+          <Red>50</Red>
+          <Green>21</Green>
+          <Blue>101</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="15">
+      <EfxStatic>
+        <Color random="0">
+          <Red>44</Red>
+          <Green>59</Green>
+          <Blue>118</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="78">
+      <EfxStatic>
+        <Color random="0">
+          <Red>144</Red>
+          <Green>139</Green>
+          <Blue>206</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="23">
+      <EfxStatic>
+        <Color random="0">
+          <Red>227</Red>
+          <Green>180</Green>
+          <Blue>188</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="86">
+      <EfxStatic>
+        <Color random="0">
+          <Red>45</Red>
+          <Green>50</Green>
+          <Blue>114</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="32">
+      <EfxStatic>
+        <Color random="0">
+          <Red>31</Red>
+          <Green>43</Green>
+          <Blue>127</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="109">
+      <EfxStatic>
+        <Color random="0">
+          <Red>24</Red>
+          <Green>22</Green>
+          <Blue>121</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="45">
+      <EfxStatic>
+        <Color random="0">
+          <Red>52</Red>
+          <Green>22</Green>
+          <Blue>86</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="99">
+      <EfxStatic>
+        <Color random="0">
+          <Red>54</Red>
+          <Green>36</Green>
+          <Blue>84</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="29">
+      <EfxStatic>
+        <Color random="0">
+          <Red>29</Red>
+          <Green>36</Green>
+          <Blue>126</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="44">
+      <EfxStatic>
+        <Color random="0">
+          <Red>36</Red>
+          <Green>19</Green>
+          <Blue>71</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="101">
+      <EfxStatic>
+        <Color random="0">
+          <Red>57</Red>
+          <Green>26</Green>
+          <Blue>93</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="66">
+      <EfxStatic>
+        <Color random="0">
+          <Red>35</Red>
+          <Green>6</Green>
+          <Blue>70</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="22">
+      <EfxStatic>
+        <Color random="0">
+          <Red>32</Red>
+          <Green>8</Green>
+          <Blue>70</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="84">
+      <EfxStatic>
+        <Color random="0">
+          <Red>33</Red>
+          <Green>9</Green>
+          <Blue>71</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="64">
+      <EfxStatic>
+        <Color random="0">
+          <Red>35</Red>
+          <Green>15</Green>
+          <Blue>68</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="98">
+      <EfxStatic>
+        <Color random="0">
+          <Red>35</Red>
+          <Green>15</Green>
+          <Blue>74</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="69">
+      <EfxStatic>
+        <Color random="0">
+          <Red>42</Red>
+          <Green>0</Green>
+          <Blue>71</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="51">
+      <EfxStatic>
+        <Color random="0">
+          <Red>156</Red>
+          <Green>123</Green>
+          <Blue>238</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="48">
+      <EfxStatic>
+        <Color random="0">
+          <Red>47</Red>
+          <Green>25</Green>
+          <Blue>87</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="20">
+      <EfxStatic>
+        <Color random="0">
+          <Red>168</Red>
+          <Green>167</Green>
+          <Blue>211</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="80">
+      <EfxStatic>
+        <Color random="0">
+          <Red>158</Red>
+          <Green>166</Green>
+          <Blue>229</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="92">
+      <EfxStatic>
+        <Color random="0">
+          <Red>95</Red>
+          <Green>40</Green>
+          <Blue>221</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="96">
+      <EfxStatic>
+        <Color random="0">
+          <Red>82</Red>
+          <Green>115</Green>
+          <Blue>208</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="76">
+      <EfxStatic>
+        <Color random="0">
+          <Red>18</Red>
+          <Green>22</Green>
+          <Blue>145</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="95">
+      <EfxStatic>
+        <Color random="0">
+          <Red>70</Red>
+          <Green>93</Green>
+          <Blue>195</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="75">
+      <EfxStatic>
+        <Color random="0">
+          <Red>43</Red>
+          <Green>44</Green>
+          <Blue>162</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="50">
+      <EfxStatic>
+        <Color random="0">
+          <Red>120</Red>
+          <Green>60</Green>
+          <Blue>244</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="97">
+      <EfxStatic>
+        <Color random="0">
+          <Red>75</Red>
+          <Green>94</Green>
+          <Blue>196</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="79">
+      <EfxStatic>
+        <Color random="0">
+          <Red>89</Red>
+          <Green>122</Green>
+          <Blue>201</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="104">
+      <EfxStatic>
+        <Color random="0">
+          <Red>84</Red>
+          <Green>136</Green>
+          <Blue>196</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="56">
+      <EfxStatic>
+        <Color random="0">
+          <Red>48</Red>
+          <Green>74</Green>
+          <Blue>161</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="88">
+      <EfxStatic>
+        <Color random="0">
+          <Red>53</Red>
+          <Green>84</Green>
+          <Blue>164</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="54">
+      <EfxStatic>
+        <Color random="0">
+          <Red>56</Red>
+          <Green>95</Green>
+          <Blue>170</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="55">
+      <EfxStatic>
+        <Color random="0">
+          <Red>31</Red>
+          <Green>40</Green>
+          <Blue>141</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="52">
+      <EfxStatic>
+        <Color random="0">
+          <Red>54</Red>
+          <Green>85</Green>
+          <Blue>165</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="77">
+      <EfxStatic>
+        <Color random="0">
+          <Red>117</Red>
+          <Green>154</Green>
+          <Blue>225</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="89">
+      <EfxStatic>
+        <Color random="0">
+          <Red>87</Red>
+          <Green>126</Green>
+          <Blue>195</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="43">
+      <EfxStatic>
+        <Color random="0">
+          <Red>84</Red>
+          <Green>113</Green>
+          <Blue>193</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="57">
+      <EfxStatic>
+        <Color random="0">
+          <Red>26</Red>
+          <Green>39</Green>
+          <Blue>141</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="87">
+      <EfxStatic>
+        <Color random="0">
+          <Red>49</Red>
+          <Green>72</Green>
+          <Blue>166</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="39">
+      <EfxStatic>
+        <Color random="0">
+          <Red>92</Red>
+          <Green>129</Green>
+          <Blue>197</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="65">
+      <EfxStatic>
+        <Color random="0">
+          <Red>112</Red>
+          <Green>208</Green>
+          <Blue>233</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="73">
+      <EfxStatic>
+        <Color random="0">
+          <Red>91</Red>
+          <Green>133</Green>
+          <Blue>193</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="2">
+      <EfxStatic>
+        <Color random="0">
+          <Red>60</Red>
+          <Green>92</Green>
+          <Blue>167</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="30">
+      <EfxStatic>
+        <Color random="0">
+          <Red>28</Red>
+          <Green>38</Green>
+          <Blue>135</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="37">
+      <EfxStatic>
+        <Color random="0">
+          <Red>62</Red>
+          <Green>88</Green>
+          <Blue>162</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="28">
+      <EfxStatic>
+        <Color random="0">
+          <Red>31</Red>
+          <Green>41</Green>
+          <Blue>130</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="34">
+      <EfxStatic>
+        <Color random="0">
+          <Red>33</Red>
+          <Green>38</Green>
+          <Blue>129</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="35">
+      <EfxStatic>
+        <Color random="0">
+          <Red>62</Red>
+          <Green>91</Green>
+          <Blue>159</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="17">
+      <EfxStatic>
+        <Color random="0">
+          <Red>36</Red>
+          <Green>49</Green>
+          <Blue>128</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="26">
+      <EfxStatic>
+        <Color random="0">
+          <Red>102</Red>
+          <Green>134</Green>
+          <Blue>195</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="31">
+      <EfxStatic>
+        <Color random="0">
+          <Red>41</Red>
+          <Green>59</Green>
+          <Blue>143</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="94">
+      <EfxStatic>
+        <Color random="0">
+          <Red>49</Red>
+          <Green>22</Green>
+          <Blue>151</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="38">
+      <EfxStatic>
+        <Color random="0">
+          <Red>49</Red>
+          <Green>75</Green>
+          <Blue>152</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="8">
+      <EfxStatic>
+        <Color random="0">
+          <Red>57</Red>
+          <Green>86</Green>
+          <Blue>146</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="10">
+      <EfxStatic>
+        <Color random="0">
+          <Red>62</Red>
+          <Green>86</Green>
+          <Blue>146</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="36">
+      <EfxStatic>
+        <Color random="0">
+          <Red>53</Red>
+          <Green>82</Green>
+          <Blue>152</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="90">
+      <EfxStatic>
+        <Color random="0">
+          <Red>99</Red>
+          <Green>152</Green>
+          <Blue>206</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="108">
+      <EfxStatic>
+        <Color random="0">
+          <Red>34</Red>
+          <Green>42</Green>
+          <Blue>140</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="12">
+      <EfxStatic>
+        <Color random="0">
+          <Red>54</Red>
+          <Green>74</Green>
+          <Blue>135</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="11">
+      <EfxStatic>
+        <Color random="0">
+          <Red>53</Red>
+          <Green>78</Green>
+          <Blue>135</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="13">
+      <EfxStatic>
+        <Color random="0">
+          <Red>51</Red>
+          <Green>71</Green>
+          <Blue>134</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="14">
+      <EfxStatic>
+        <Color random="0">
+          <Red>52</Red>
+          <Green>66</Green>
+          <Blue>129</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="91">
+      <EfxStatic>
+        <Color random="0">
+          <Red>103</Red>
+          <Green>147</Green>
+          <Blue>210</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="27">
+      <EfxStatic>
+        <Color random="0">
+          <Red>38</Red>
+          <Green>65</Green>
+          <Blue>144</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="40">
+      <EfxStatic>
+        <Color random="0">
+          <Red>109</Red>
+          <Green>147</Green>
+          <Blue>212</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="4">
+      <EfxStatic>
+        <Color random="0">
+          <Red>117</Red>
+          <Green>143</Green>
+          <Blue>200</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="5">
+      <EfxStatic>
+        <Color random="0">
+          <Red>119</Red>
+          <Green>144</Green>
+          <Blue>201</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="103">
+      <EfxStatic>
+        <Color random="0">
+          <Red>71</Red>
+          <Green>37</Green>
+          <Blue>134</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="82">
+      <EfxStatic>
+        <Color random="0">
+          <Red>86</Red>
+          <Green>43</Green>
+          <Blue>132</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="16">
+      <EfxStatic>
+        <Color random="0">
+          <Red>100</Red>
+          <Green>54</Green>
+          <Blue>188</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="3">
+      <EfxStatic>
+        <Color random="0">
+          <Red>85</Red>
+          <Green>114</Green>
+          <Blue>180</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="18">
+      <EfxStatic>
+        <Color random="0">
+          <Red>64</Red>
+          <Green>94</Green>
+          <Blue>164</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="19">
+      <EfxStatic>
+        <Color random="0">
+          <Red>85</Red>
+          <Green>125</Green>
+          <Blue>176</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="1">
+      <EfxStatic>
+        <Color random="0">
+          <Red>68</Red>
+          <Green>92</Green>
+          <Blue>162</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="93">
+      <EfxStatic>
+        <Color random="0">
+          <Red>75</Red>
+          <Green>29</Green>
+          <Blue>163</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="83">
+      <EfxStatic>
+        <Color random="0">
+          <Red>98</Red>
+          <Green>57</Green>
+          <Blue>136</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="9">
+      <EfxStatic>
+        <Color random="0">
+          <Red>77</Red>
+          <Green>103</Green>
+          <Blue>160</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="60">
+      <EfxStatic>
+        <Color random="0">
+          <Red>80</Red>
+          <Green>112</Green>
+          <Blue>189</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="6">
+      <EfxStatic>
+        <Color random="0">
+          <Red>73</Red>
+          <Green>101</Green>
+          <Blue>166</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="53">
+      <EfxStatic>
+        <Color random="0">
+          <Red>64</Red>
+          <Green>104</Green>
+          <Blue>176</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="59">
+      <EfxStatic>
+        <Color random="0">
+          <Red>78</Red>
+          <Green>110</Green>
+          <Blue>185</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="106">
+      <EfxStatic>
+        <Color random="0">
+          <Red>69</Red>
+          <Green>110</Green>
+          <Blue>189</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="72">
+      <EfxStatic>
+        <Color random="0">
+          <Red>76</Red>
+          <Green>113</Green>
+          <Blue>183</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="105">
+      <EfxStatic>
+        <Color random="0">
+          <Red>70</Red>
+          <Green>114</Green>
+          <Blue>189</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="107">
+      <EfxStatic>
+        <Color random="0">
+          <Red>71</Red>
+          <Green>118</Green>
+          <Blue>188</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="58">
+      <EfxStatic>
+        <Color random="0">
+          <Red>72</Red>
+          <Green>111</Green>
+          <Blue>180</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="63">
+      <EfxStatic>
+        <Color random="0">
+          <Red>114</Red>
+          <Green>32</Green>
+          <Blue>143</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+    <Group id="74">
+      <EfxStatic>
+        <Color random="0">
+          <Red>69</Red>
+          <Green>120</Green>
+          <Blue>186</Blue>
+        </Color>
+      </EfxStatic>
+    </Group>
+  </Groups>
+</RGBLayer>
