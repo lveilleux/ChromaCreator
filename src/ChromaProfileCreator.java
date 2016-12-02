@@ -43,10 +43,12 @@ public class ChromaProfileCreator {
             System.out.println("Please enter a valid image file name.");
             System.exit(32);
         }
+        String name = fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf("."));
         img = createResizedCopy(img, 22, 6, true);
         System.out.println("IMG SIZE: " + img.getHeight() + " x " + img.getWidth());
 
-        buildXMLFiles(img);
+        String staticName = buildStaticXMLFiles(img);
+        buildControlXMLFile(staticName);
 
         //Run python script to zip files and convert to RazerChroma
         try {
@@ -86,7 +88,7 @@ public class ChromaProfileCreator {
         return scaledBI;
     }
 
-    private static void buildXMLFiles(BufferedImage image) {
+    private static String buildStaticXMLFiles(BufferedImage image) {
         System.out.println("Generated XML files for ChromeProfile");
 
         //Find all different colors in the image
@@ -105,6 +107,7 @@ public class ChromaProfileCreator {
 
         boolean done = false;
         int ID = 0;
+        String fileName = "static.xml";
         try {
             File inputFile = new File("template/static2.xml");
             SAXBuilder saxBuilder = new SAXBuilder();
@@ -152,14 +155,43 @@ public class ChromaProfileCreator {
 
             XMLOutputter xmlOutput = new XMLOutputter();
 
-            // display xml
+            // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
-            xmlOutput.output(document, new FileOutputStream("output/2E93D2CA-802D-4B15-8C33-65C1864F5890.xml"));
+            xmlOutput.output(document, new FileOutputStream("output/" + fileName));
         } catch (JDOMException | IOException e) {
             e.printStackTrace();
         }
-
+        return fileName;
     }
+
+    private static String buildControlXMLFile(String staticFileName) {
+        System.out.println("Generated control XML files for ChromeProfile");
+
+        String fileName = "controller.xml";
+        try {
+            File inputFile = new File("template/toplevel.xml");
+            SAXBuilder saxBuilder = new SAXBuilder();
+            Document document = saxBuilder.build(inputFile);
+            Element rootElement = document.getRootElement();
+            List<Element> tiersList = rootElement.getChildren("Tier");
+
+            Element template = tiersList.get(0).clone();
+            tiersList.clear();
+            template.getChild("UUID").setText(staticFileName);
+            tiersList.add(template);
+            XMLOutputter xmlOutput = new XMLOutputter();
+
+            // output xml
+            xmlOutput.setFormat(Format.getPrettyFormat());
+            xmlOutput.output(document, new FileOutputStream("output/" + fileName));
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        return fileName;
+    }
+
+
+
 
     public static void pack(final Path folder, final Path zipFilePath) throws IOException {
         try (
