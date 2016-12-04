@@ -25,16 +25,21 @@ import org.jdom2.output.XMLOutputter;
  */
 public class ChromaProfileCreator {
 
+    private static final int RAZER_KB_HEIGHT = 6;
+    private static final int RAZER_KB_WIDTH = 22;
+
     public static void main(String[] args) {
-        String fileName = "";
+        String fileName;
+        Color reactColor = null;
         if (args.length == 0) {
             Scanner in = new Scanner(System.in);
             System.out.print("Please enter your image path and name: ");
             fileName = in.next();
-        } else if (args[0].equals("-h")) {
-            System.out.println("Help message.");
         } else {
             fileName = args[0];
+        }
+        if (args.length > 1) {
+            reactColor = Color.getColor(args[1]);
         }
         BufferedImage img = null;
         try {
@@ -44,11 +49,22 @@ public class ChromaProfileCreator {
             System.exit(32);
         }
         String name = fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf("."));
-        img = createResizedCopy(img, 22, 6, true);
+        img = createResizedCopy(img, RAZER_KB_WIDTH, RAZER_KB_HEIGHT, true);
         System.out.println("IMG SIZE: " + img.getHeight() + " x " + img.getWidth());
 
-        String staticName = buildStaticXMLFiles(img);
-        buildControlXMLFile(staticName);
+        //Build separate XML files
+        String staticName = buildStaticXMLFile(img);
+        String reactName = "";
+        if (reactColor != null) {
+            reactName = buildReactXMLFile(reactColor);
+        }
+        //Build Control XML file
+        String[] files;
+        if (reactColor != null)
+            files = new String[]{staticName, reactName};
+        else
+            files = new String[]{staticName};
+        buildControlXMLFile(files);
 
         //Run python script to zip files and convert to RazerChroma
         try {
@@ -58,23 +74,16 @@ public class ChromaProfileCreator {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-
-        //ZipController.zipFiles("output/", "ChromeProfile");
-        //File profile = new File("ChromaProfile.zip");
-        //boolean success = profile.renameTo( new File("ChromeProfile.razerchroma"));
-        //System.out.print(success);
-        /*
-        //Save the new tiny image out
-        fileName = fileName.replace(".jpg", "NEW.jpg");
-        try {
-            ImageIO.write(img, "JPEG", new File(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
     }
 
-
+    /**
+     * Takes the original given image and resizes it based on input parameters. New resized image is returned.
+     * @param originalImage - Original image to resize.
+     * @param scaledWidth - New width to make the image.
+     * @param scaledHeight - New height to make the iamge.
+     * @param preserveAlpha - Preserve the alpha factor of the image, or not.
+     * @return - Resized image based on originalImage with the size of scaledWidth x scaledHeight.
+     */
     private static BufferedImage createResizedCopy(Image originalImage, int scaledWidth, int scaledHeight, boolean preserveAlpha) {
         System.out.println("resizing...");
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
@@ -88,15 +97,21 @@ public class ChromaProfileCreator {
         return scaledBI;
     }
 
-    private static String buildStaticXMLFiles(BufferedImage image) {
+    /**
+     * Pulls from the static2.xml file to convert the given image to an xml file that correctly colors all keys
+     * that exist in the Razer Master Keyboard layout to the colors given in the image. Returns the name of the
+     * file created.
+     * @param image - Image used to create static profile
+     * @return - Name of the created XML file
+     */
+    private static String buildStaticXMLFile(BufferedImage image) {
         System.out.println("Generated XML files for ChromeProfile");
 
         //Find all different colors in the image
-        final int width = 22, height = 6;
-        Color[][] result = new Color[height][width];
+        Color[][] result = new Color[RAZER_KB_HEIGHT][RAZER_KB_WIDTH];
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        for (int i = 0; i < RAZER_KB_HEIGHT; i++) {
+            for (int j = 0; j < RAZER_KB_WIDTH; j++) {
                 int RGB = image.getRGB(j, i);
                 Color c = new Color(RGB);
                 result[i][j] = c;
@@ -104,8 +119,6 @@ public class ChromaProfileCreator {
         }
         //Remove blank keys in the Razer Chroma LEDs
         result = removedUnusedKeys(result);
-
-        boolean done = false;
         int ID = 0;
         String fileName = "static.xml";
         try {
@@ -119,8 +132,8 @@ public class ChromaProfileCreator {
             Element colorElement = list.get(0).clone();
             list.clear();
             HashMap<Color, Integer> colorMap = new HashMap<>();
-            for (int row = 0; row < height; row++) {
-                for (int col = 0; col < width; col++) {
+            for (int row = 0; row < RAZER_KB_HEIGHT; row++) {
+                for (int col = 0; col < RAZER_KB_WIDTH; col++) {
                     if (result[row][col] == null)
                         continue;
                     Color c = result[row][col];
@@ -151,10 +164,7 @@ public class ChromaProfileCreator {
                 Blue.setText(Integer.toString(color.getBlue()));
                 groupList.add(group);
             }
-
-
             XMLOutputter xmlOutput = new XMLOutputter();
-
             // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
             xmlOutput.output(document, new FileOutputStream("output/" + fileName));
@@ -164,35 +174,95 @@ public class ChromaProfileCreator {
         return fileName;
     }
 
-    private static String buildControlXMLFile(String staticFileName) {
-        System.out.println("Generated control XML files for ChromeProfile");
+    /**
+     * Function used to remove keys that don't exist in the Razer Master Keyboard from the image. The X and Y
+     * of each key space not in use is stored in the arrays, and set to null in the key array given.
+     * Leaving these keys in causes Synapse/Chroma Configurator to not read the .razerchroma file
+     * @param keyArray - 2D Color Array of colors for the image, after downsizing
+     * @return - 2D Color array with nonexistent keys(Not in Razer MasterKeyboard) set to null.
+     */
+    private static Color[][] removedUnusedKeys(Color[][] keyArray) {
+        int[] UNUSED_KEY_X = {0,0, 0, 0, 0, 3, 3, 3, 3, 3,4, 4, 4, 4,5,5,5,5,5, 5, 5, 5};
+        int[] UNUSED_KEY_Y = {0,2,18,19,21,13,15,16,17,21,2,13,15,17,4,5,6,8,9,10,18,21};
+        for (int i = 0; i < UNUSED_KEY_X.length; i++) {
+            keyArray[UNUSED_KEY_X[i]][UNUSED_KEY_Y[i]] = null;
+        }
+        return keyArray;
+    }
 
+    private static String buildReactXMLFile(Color color) {
+        String fileName = "reactive.xml";
+        try {
+            File inputFile = new File("template/reactive.xml");
+            SAXBuilder saxBuilder = new SAXBuilder();
+            Document document = saxBuilder.build(inputFile);
+            Element rootElement = document.getRootElement();
+            Element keyColorElement = rootElement.getChild("LayerKeys");
+            List<Element> list = keyColorElement.getChildren();
+            Element colorElement = list.get(0).clone();
+            list.clear();
+            HashMap<Color, Integer> colorMap = new HashMap<>();
+            for (int row = 0; row < RAZER_KB_HEIGHT; row++) {
+                for (int col = 0; col < RAZER_KB_WIDTH; col++) {
+                    Element copy = colorElement.clone();
+                    copy.setAttribute("row", Integer.toString(row));
+                    copy.setAttribute("column", Integer.toString(col));
+                    copy.setAttribute("id", Integer.toString(0));
+                    list.add(copy);
+                }
+            }
+
+
+            XMLOutputter xmlOutput = new XMLOutputter();
+            // output xml
+            xmlOutput.setFormat(Format.getPrettyFormat());
+            xmlOutput.output(document, new FileOutputStream("output/" + fileName));
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        return fileName;
+    }
+
+    /**
+     * Pulls from the control.xml template file and creates a control file for the final .razerchroma file that
+     * connects and layers all layers created earlier.
+     * @param fileNames - Names of all the layer XML files created
+     */
+    private static void buildControlXMLFile(String[] fileNames) {
+        System.out.println("Generated control XML files for ChromeProfile");
         String fileName = "controller.xml";
         try {
-            File inputFile = new File("template/toplevel.xml");
+            File inputFile = new File("template/control.xml");
             SAXBuilder saxBuilder = new SAXBuilder();
             Document document = saxBuilder.build(inputFile);
             Element rootElement = document.getRootElement();
             List<Element> tiersList = rootElement.getChildren("Tier");
-
             Element template = tiersList.get(0).clone();
             tiersList.clear();
-            template.getChild("UUID").setText(staticFileName);
-            tiersList.add(template);
-            XMLOutputter xmlOutput = new XMLOutputter();
+            for(int i = 0; i < fileNames.length; i++) {
+                fileNames[i] = fileNames[i].replace(".xml", "");
+                Element temp = template.clone();
+                temp.setAttribute("level", Integer.toString(i));
+                temp.getChild("UUID").setText(fileNames[i]);
+                tiersList.add(template);
+            }
 
+            XMLOutputter xmlOutput = new XMLOutputter();
             // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
             xmlOutput.output(document, new FileOutputStream("output/" + fileName));
         } catch (JDOMException | IOException e) {
             e.printStackTrace();
         }
-        return fileName;
     }
 
-
-
-
+    /**
+     * Unused Function in place for when zipping the zip file and renaming it is moved from its current
+     * python implementation to Java
+     * @param folder - Folder to zip
+     * @param zipFilePath - Path to place final zip file
+     * @throws IOException - If folder or final destination doesn't exist, or are unreachable
+     */
     public static void pack(final Path folder, final Path zipFilePath) throws IOException {
         try (
                 FileOutputStream fos = new FileOutputStream(zipFilePath.toFile());
@@ -214,15 +284,4 @@ public class ChromaProfileCreator {
             });
         }
     }
-
-
-    private static Color[][] removedUnusedKeys(Color[][] keyArray) {
-        int[] UNUSED_KEY_X = {0,0, 0, 0, 0, 3, 3, 3, 3, 3,4, 4, 4, 4,5,5,5,5,5, 5, 5, 5};
-        int[] UNUSED_KEY_Y = {0,2,18,19,21,13,15,16,17,21,2,13,15,17,4,5,6,8,9,10,18,21};
-        for (int i = 0; i < UNUSED_KEY_X.length; i++) {
-            keyArray[UNUSED_KEY_X[i]][UNUSED_KEY_Y[i]] = null;
-        }
-        return keyArray;
-    }
-
 }
