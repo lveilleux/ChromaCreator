@@ -70,7 +70,7 @@ public class GUIController implements Initializable {
         keyboardImage = img;
 
         //Convert from BufferedImage to JavaFX Image
-        WritableImage image = null;
+        WritableImage image;
         image = new WritableImage(img.getWidth(), img.getHeight());
         PixelWriter pw = image.getPixelWriter();
         for (int x = 0; x < img.getWidth(); x++) {
