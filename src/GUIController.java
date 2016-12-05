@@ -6,10 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.paint.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,11 +31,16 @@ public class GUIController implements Initializable {
     private CheckBox reactiveLayerCheck = new CheckBox();
     @FXML
     private ColorPicker reactiveColor = new ColorPicker();
+    @FXML
+    private ImageView imageView = new ImageView();
+
     private Color reactiveLayerColor;
+    private BufferedImage keyboardImage;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO: Implement Reactive Layer
         reactiveLayerCheck.setDisable(true);
+        keyboardImage = null;
     }
 
     @FXML
@@ -54,15 +64,27 @@ public class GUIController implements Initializable {
     @FXML
     protected void handleCreateProfileButton(ActionEvent event) {
         //Run Chroma Creator
-        String[] arguments;
-        if (reactiveLayerCheck.isSelected()) {
-            arguments = new String[]{inputFileLabel.getText(), reactiveColor.getValue().toString()};
-        } else {
-            arguments = new String[]{inputFileLabel.getText()};
-        }
-        Runnable runnable = () -> ChromaProfileCreator.main(arguments);
-        runnable.run();
+        BufferedImage img;
+        img = ChromaProfileCreator.importImage(inputFileLabel.getText());
         exportProfileButton.setDisable(false);
+        keyboardImage = img;
+
+        //Convert from BufferedImage to JavaFX Image
+        WritableImage image = null;
+        image = new WritableImage(img.getWidth(), img.getHeight());
+        PixelWriter pw = image.getPixelWriter();
+        for (int x = 0; x < img.getWidth(); x++) {
+            for (int y = 0; y < img.getHeight(); y++) {
+                pw.setArgb(x, y, img.getRGB(x, y));
+            }
+        }
+        imageView.setImage(image);
+    }
+
+    @FXML
+    protected void handleExportProfileButton(ActionEvent event) {
+        //Export Profile
+        ChromaProfileCreator.exportProfile(keyboardImage, null);
     }
 
 }

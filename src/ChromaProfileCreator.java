@@ -41,6 +41,14 @@ public class ChromaProfileCreator {
         if (args.length > 1) {
             reactColor = Color.getColor(args[1]);
         }
+        //Import the image into program
+        BufferedImage img = importImage(fileName);
+        //Export Profile
+        exportProfile(img, reactColor);
+
+    }
+
+    protected static BufferedImage importImage(String fileName) {
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File(fileName));
@@ -51,7 +59,10 @@ public class ChromaProfileCreator {
         String name = fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf("."));
         img = createResizedCopy(img, RAZER_KB_WIDTH, RAZER_KB_HEIGHT, true);
         System.out.println("IMG SIZE: " + img.getHeight() + " x " + img.getWidth());
+        return img;
+    }
 
+    protected static void exportProfile(BufferedImage img, Color reactColor) {
         //Build separate XML files
         String staticName = buildStaticXMLFile(img);
         String reactName = "";
@@ -119,6 +130,7 @@ public class ChromaProfileCreator {
         }
         //Remove blank keys in the Razer Chroma LEDs
         result = removedUnusedKeys(result);
+
         int ID = 0;
         String fileName = "static.xml";
         try {
