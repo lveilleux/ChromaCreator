@@ -34,7 +34,7 @@
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <Button fx:id="SelectImageButton" mnemonicParsing="false" onAction="#handleImageFileIntake" text="Select Image File" />
+                        <Button mnemonicParsing="false" onAction="#handleImageFileIntake" text="Select Image File" />
                      </children>
                   </VBox>
                </children>
@@ -65,7 +65,6 @@
                      </children>
                   </HBox>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="200.0" />
-                  <Button defaultButton="true" mnemonicParsing="false" onAction="#handleCreateProfileButton" text="Create Profile" />
                </children>
             </VBox>
             <Button fx:id="exportProfileButton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#handleExportProfileButton" text="Export Profile" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />

@@ -58,7 +58,6 @@ public class ChromaProfileCreator {
         }
         String name = fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf("."));
         img = createResizedCopy(img, RAZER_KB_WIDTH, RAZER_KB_HEIGHT, true);
-        System.out.println("IMG SIZE: " + img.getHeight() + " x " + img.getWidth());
         return img;
     }
 
@@ -96,7 +95,6 @@ public class ChromaProfileCreator {
      * @return - Resized image based on originalImage with the size of scaledWidth x scaledHeight.
      */
     private static BufferedImage createResizedCopy(Image originalImage, int scaledWidth, int scaledHeight, boolean preserveAlpha) {
-        System.out.println("resizing...");
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
         BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
         Graphics2D g = scaledBI.createGraphics();
@@ -116,8 +114,6 @@ public class ChromaProfileCreator {
      * @return - Name of the created XML file
      */
     private static String buildStaticXMLFile(BufferedImage image) {
-        System.out.println("Generated XML files for ChromeProfile");
-
         //Find all different colors in the image
         Color[][] result = new Color[RAZER_KB_HEIGHT][RAZER_KB_WIDTH];
 
@@ -223,8 +219,6 @@ public class ChromaProfileCreator {
                     list.add(copy);
                 }
             }
-
-
             XMLOutputter xmlOutput = new XMLOutputter();
             // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
@@ -241,7 +235,6 @@ public class ChromaProfileCreator {
      * @param fileNames - Names of all the layer XML files created
      */
     private static void buildControlXMLFile(String[] fileNames) {
-        System.out.println("Generated control XML files for ChromeProfile");
         String fileName = "controller.xml";
         try {
             File inputFile = new File("template/control.xml");

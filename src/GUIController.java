@@ -59,10 +59,6 @@ public class GUIController implements Initializable {
         if (imageFile != null) {
             inputFileLabel.setText(imageFile.getAbsolutePath());
         }
-    }
-
-    @FXML
-    protected void handleCreateProfileButton(ActionEvent event) {
         //Run Chroma Creator
         BufferedImage img;
         img = ChromaProfileCreator.importImage(inputFileLabel.getText());
