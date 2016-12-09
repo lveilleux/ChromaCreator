@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
@@ -51,7 +50,8 @@ public class GUIController implements Initializable {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All Images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
+                new FileChooser.ExtensionFilter("PNG", "*.png"),
+                new FileChooser.ExtensionFilter("BMP", "*.bmp")
         );
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         File imageFile = fileChooser.showOpenDialog(stage);

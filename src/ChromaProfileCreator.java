@@ -78,7 +78,7 @@ public class ChromaProfileCreator {
 
         //Run python script to zip files and convert to RazerChroma
         try {
-            Process p = Runtime.getRuntime().exec("python src/createRazerChroma.py");
+            Process p = Runtime.getRuntime().exec("python src/createRazerChroma.py --name=chromaFile");
             p.waitFor();
             p.destroy();
         } catch (IOException | InterruptedException e) {
