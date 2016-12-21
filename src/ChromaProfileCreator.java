@@ -2,15 +2,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -175,7 +168,9 @@ public class ChromaProfileCreator {
             XMLOutputter xmlOutput = new XMLOutputter();
             // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
-            xmlOutput.output(document, new FileOutputStream("output/" + fileName));
+            FileOutputStream output = new FileOutputStream("output/" + fileName);
+            xmlOutput.output(document, output);
+            output.close();
         } catch (JDOMException | IOException e) {
             e.printStackTrace();
         }
@@ -222,7 +217,9 @@ public class ChromaProfileCreator {
             XMLOutputter xmlOutput = new XMLOutputter();
             // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
-            xmlOutput.output(document, new FileOutputStream("output/" + fileName));
+            FileOutputStream output = new FileOutputStream("output/" + fileName);
+            xmlOutput.output(document, output);
+            output.close();
         } catch (JDOMException | IOException e) {
             e.printStackTrace();
         }
@@ -249,44 +246,17 @@ public class ChromaProfileCreator {
                 Element temp = template.clone();
                 temp.setAttribute("level", Integer.toString(i));
                 temp.getChild("UUID").setText(fileNames[i]);
-                tiersList.add(template);
+                tiersList.add(temp);
             }
 
             XMLOutputter xmlOutput = new XMLOutputter();
             // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
-            xmlOutput.output(document, new FileOutputStream("output/" + fileName));
+            FileOutputStream output = new FileOutputStream("output/" + fileName);
+            xmlOutput.output(document, output);
+            output.close();
         } catch (JDOMException | IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    /**
-     * Unused Function in place for when zipping the zip file and renaming it is moved from its current
-     * python implementation to Java
-     * @param folder - Folder to zip
-     * @param zipFilePath - Path to place final zip file
-     * @throws IOException - If folder or final destination doesn't exist, or are unreachable
-     */
-    public static void pack(final Path folder, final Path zipFilePath) throws IOException {
-        try (
-                FileOutputStream fos = new FileOutputStream(zipFilePath.toFile());
-                ZipOutputStream zos = new ZipOutputStream(fos)
-        ) {
-            Files.walkFileTree(folder, new SimpleFileVisitor<Path>() {
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    zos.putNextEntry(new ZipEntry(folder.relativize(file).toString()));
-                    Files.copy(file, zos);
-                    zos.closeEntry();
-                    return FileVisitResult.CONTINUE;
-                }
-
-                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-                    zos.putNextEntry(new ZipEntry(folder.relativize(dir).toString() + "/"));
-                    zos.closeEntry();
-                    return FileVisitResult.CONTINUE;
-                }
-            });
         }
     }
 }

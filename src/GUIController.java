@@ -10,12 +10,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.ResourceBundle;
 
 /**
@@ -37,8 +43,6 @@ public class GUIController implements Initializable {
     private BufferedImage keyboardImage;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO: Implement Reactive Layer
-        reactiveLayerCheck.setDisable(true);
         keyboardImage = null;
     }
 
@@ -78,9 +82,33 @@ public class GUIController implements Initializable {
     }
 
     @FXML
-    protected void handleExportProfileButton(ActionEvent event) {
-        //Export Profile
-        ChromaProfileCreator.exportProfile(keyboardImage, null);
+    protected void handleReactivePickerClicked(ActionEvent event) {
+        //Color has been selected in the reactive layer color picker
+        reactiveLayerCheck.setSelected(true);
     }
 
+    @FXML
+    protected void handleExportProfileButton(ActionEvent event) throws IOException {
+        //Export Profile
+        reactiveLayerColor = null;
+        java.awt.Color color = null;
+        if(reactiveLayerCheck.isSelected()) {
+            reactiveLayerColor = reactiveColor.getValue();
+            color = new java.awt.Color((float) reactiveLayerColor.getRed(),
+                    (float) reactiveLayerColor.getGreen(),
+                    (float) reactiveLayerColor.getBlue(),
+                    (float) reactiveLayerColor.getOpacity());
+        }
+        File temp = new File("output");
+        if(temp.mkdir() || temp.exists()) {
+            ChromaProfileCreator.exportProfile(keyboardImage, color);
+            for (File file : temp.listFiles()) {
+                Files.delete(file.toPath());
+            }
+            temp.delete();
+        } else {
+            throw new IOException("Failed to create temporary directory, please try again");
+        }
+        System.out.println("Profile Created");
+    }
 }

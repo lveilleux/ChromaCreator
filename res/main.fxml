@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
    <children>
       <GridPane alignment="CENTER" layoutX="1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
@@ -61,7 +68,7 @@
                   <HBox alignment="CENTER" prefWidth="200.0" spacing="50.0">
                      <children>
                         <CheckBox fx:id="reactiveLayerCheck" mnemonicParsing="false" text="Reactive Layer" />
-                        <ColorPicker fx:id="reactiveColor" promptText="Reactive Layer Color" />
+                        <ColorPicker fx:id="reactiveColor" onAction="#handleReactivePickerClicked" promptText="Reactive Layer Color" />
                      </children>
                   </HBox>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="200.0" />
