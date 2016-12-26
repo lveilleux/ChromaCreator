@@ -214,6 +214,24 @@ public class ChromaProfileCreator {
                     list.add(copy);
                 }
             }
+
+            //Set the Groups based on the IDs in the colorMap
+            Element Groups = rootElement.getChild("Groups");
+            List<Element> groupList = Groups.getChildren();
+            Element group = groupList.get(0).clone();
+            groupList.clear();
+
+            //Leaving the group ID, not supporting different Reactive colors
+            //TODO: Support for multiple different Reactive Colors in a layer
+            Element Red = group.getChild("EfxReactive").getChild("Color").getChild("Red");
+            Element Green = group.getChild("EfxReactive").getChild("Color").getChild("Green");
+            Element Blue = group.getChild("EfxReactive").getChild("Color").getChild("Blue");
+
+            Red.setText(Integer.toString(color.getRed()));
+            Green.setText(Integer.toString(color.getGreen()));
+            Blue.setText(Integer.toString(color.getBlue()));
+            groupList.add(group);
+
             XMLOutputter xmlOutput = new XMLOutputter();
             // output xml
             xmlOutput.setFormat(Format.getPrettyFormat());
