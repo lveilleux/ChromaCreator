@@ -21,9 +21,15 @@ public class ChromaProfileCreator {
     private static final int RAZER_KB_HEIGHT = 6;
     private static final int RAZER_KB_WIDTH = 22;
 
+    /**
+     * Main function used when running the program without the GUI interface, calls the same methods, but requires
+     * options be set as arguments at runtime.
+     * @param args - System/profile configuration. [Image Path, React Color]
+     */
     public static void main(String[] args) {
         String fileName;
         Color reactColor = null;
+        int layer = 0;
         if (args.length == 0) {
             Scanner in = new Scanner(System.in);
             System.out.print("Please enter your image path and name: ");
@@ -33,14 +39,21 @@ public class ChromaProfileCreator {
         }
         if (args.length > 1) {
             reactColor = Color.getColor(args[1]);
+            layer = 1;
         }
         //Import the image into program
         BufferedImage img = importImage(fileName);
         //Export Profile
-        exportProfile(img, reactColor);
+        exportProfile(img, reactColor, layer);
 
     }
 
+    /**
+     * Method to import an image into ChromaCreator. This is done by taking in the image and converting it down
+     * to the size of the keyboard, in this case the final image is coded to be 22 x 6.
+     * @param fileName - Name of the image file to import.
+     * @return - A copy of the image in the reduced size, to be shown on the GUI.
+     */
     protected static BufferedImage importImage(String fileName) {
         BufferedImage img = null;
         try {
@@ -54,22 +67,32 @@ public class ChromaProfileCreator {
         return img;
     }
 
-    protected static void exportProfile(BufferedImage img, Color reactColor) {
+    /**
+     * Method to Export profile, given the static image and reactive/ripple color over the static image.
+     * Builds XML files and calls to zip and rename the ending RazerChroma file.
+     * layer controls which profile is placed over the static image, (0 - 2) = [None, Reactive, Ripple]
+     * @param img - Image to create the static profile from
+     * @param overColor - Color for the Reactive/Ripple layer
+     * @param layer - Which profile to create over the static image. [0=None, 1=Reactive, 2=Ripple]
+     */
+    protected static void exportProfile(BufferedImage img, Color overColor, int layer) {
+        //TODO: Implement Ripple Effect Creation.
         //Build separate XML files
         String staticName = buildStaticXMLFile(img);
         String reactName = "";
-        if (reactColor != null) {
-            reactName = buildReactXMLFile(reactColor);
+        if (overColor != null) {
+            reactName = buildReactXMLFile(overColor);
         }
         //Build Control XML file
         String[] files;
-        if (reactColor != null)
+        if (layer == 1)
             files = new String[]{staticName, reactName};
         else
             files = new String[]{staticName};
         buildControlXMLFile(files);
 
         //Run python script to zip files and convert to RazerChroma
+        //TODO: Convert back into Java, to remove Python dependency.
         try {
             Process p = Runtime.getRuntime().exec("python src/createRazerChroma.py --name=chromaFile");
             p.waitFor();
@@ -100,7 +123,7 @@ public class ChromaProfileCreator {
     }
 
     /**
-     * Pulls from the static2.xml file to convert the given image to an xml file that correctly colors all keys
+     * Pulls from the static.xml file template to convert the given image to an xml file that correctly colors all keys
      * that exist in the Razer Master Keyboard layout to the colors given in the image. Returns the name of the
      * file created.
      * @param image - Image used to create static profile
@@ -123,7 +146,7 @@ public class ChromaProfileCreator {
         int ID = 0;
         String fileName = "static.xml";
         try {
-            File inputFile = new File("template/static2.xml");
+            File inputFile = new File("template/static.xml");
             SAXBuilder saxBuilder = new SAXBuilder();
             Document document = saxBuilder.build(inputFile);
             Element rootElement = document.getRootElement();
@@ -193,6 +216,13 @@ public class ChromaProfileCreator {
         return keyArray;
     }
 
+    /**
+     * Pulls from the reactive.xml file template to convert the given image to an xml file that correctly colors all
+     * keys that exist in the Razer Master Keyboard layout to the colors given in the image. Returns the name of the
+     * file created.
+     * @param color - Color to show on key press on the keyboard
+     * @return - Name of the created XML file
+     */
     private static String buildReactXMLFile(Color color) {
         String fileName = "reactive.xml";
         try {
@@ -222,7 +252,6 @@ public class ChromaProfileCreator {
             groupList.clear();
 
             //Leaving the group ID, not supporting different Reactive colors
-            //TODO: Support for multiple different Reactive Colors in a layer
             Element Red = group.getChild("EfxReactive").getChild("Color").getChild("Red");
             Element Green = group.getChild("EfxReactive").getChild("Color").getChild("Green");
             Element Blue = group.getChild("EfxReactive").getChild("Color").getChild("Blue");

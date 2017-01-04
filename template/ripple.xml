@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<RGBLayer effect="RIPPLE" enabled="1">
+  <Version>1.49</Version>
+  <LayerKeys>
+    <LayerKey row="0" column="1" id="0" />
+    <LayerKey row="5" column="17" id="0" />
+  </LayerKeys>
+  <Groups>
+    <Group id="0">
+      <EfxRipple>
+        <Pattern>MONOCHROME</Pattern>
+        <Width>200</Width>
+        <Speed>25</Speed>
+        <Pause>0</Pause>
+        <Trigger>KEYPRESS</Trigger>
+        <End>ENDAFTER<Repeats>1</Repeats></End>
+      </EfxRipple>
+    </Group>
+  </Groups>
+</RGBLayer>

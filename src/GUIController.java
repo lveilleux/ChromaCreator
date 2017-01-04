@@ -1,27 +1,24 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -35,15 +32,29 @@ public class GUIController implements Initializable {
     @FXML
     private CheckBox reactiveLayerCheck = new CheckBox();
     @FXML
-    private ColorPicker reactiveColor = new ColorPicker();
+    private CheckBox rippleLayerCheck = new CheckBox();
+    @FXML
+    private ColorPicker reactionColor = new ColorPicker();
     @FXML
     private ImageView imageView = new ImageView();
+    @FXML
+    private ComboBox<String> reactiveComboBox = new ComboBox<>();
+    @FXML
+    private Slider rippleLayerSlider = new Slider();
 
-    private Color reactiveLayerColor;
     private BufferedImage keyboardImage;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         keyboardImage = null;
+        List<String> list = new ArrayList<String>();
+        list.add("Quick");
+        list.add("Medium");
+        list.add("Long");
+        ObservableList obList = FXCollections.observableList(list);
+        reactiveComboBox.getItems().clear();
+        reactiveComboBox.setItems(obList);
     }
 
     @FXML
@@ -82,26 +93,39 @@ public class GUIController implements Initializable {
     }
 
     @FXML
-    protected void handleReactivePickerClicked(ActionEvent event) {
-        //Color has been selected in the reactive layer color picker
-        reactiveLayerCheck.setSelected(true);
+    protected void handleReactivePickerChecked(ActionEvent event) {
+        //Using Reactive, un-check Ripple
+        rippleLayerCheck.setSelected(false);
+    }
+
+    @FXML
+    protected void handleRipplePickerChecked(ActionEvent event) {
+        //Using Reactive, un-check Ripple
+        reactiveLayerCheck.setSelected(false);
     }
 
     @FXML
     protected void handleExportProfileButton(ActionEvent event) throws IOException {
         //Export Profile
-        reactiveLayerColor = null;
+        Color layerColor;
         java.awt.Color color = null;
-        if(reactiveLayerCheck.isSelected()) {
-            reactiveLayerColor = reactiveColor.getValue();
-            color = new java.awt.Color((float) reactiveLayerColor.getRed(),
-                    (float) reactiveLayerColor.getGreen(),
-                    (float) reactiveLayerColor.getBlue(),
-                    (float) reactiveLayerColor.getOpacity());
+        int layer = 0;
+        if(reactiveLayerCheck.isSelected() || rippleLayerCheck.isSelected()) {
+            layerColor = reactionColor.getValue();
+            color = new java.awt.Color((float) layerColor.getRed(),
+                    (float) layerColor.getGreen(),
+                    (float) layerColor.getBlue(),
+                    (float) layerColor.getOpacity());
         }
+        if(reactiveLayerCheck.isSelected()) {
+            layer = 1;
+        } else if (rippleLayerCheck.isSelected()) {
+            layer = 2;
+        }
+        //TODO: Support Ripple Speed and Reactive Length
         File temp = new File("output");
         if(temp.mkdir() || temp.exists()) {
-            ChromaProfileCreator.exportProfile(keyboardImage, color);
+            ChromaProfileCreator.exportProfile(keyboardImage, color, layer);
             for (File file : temp.listFiles()) {
                 Files.delete(file.toPath());
             }
