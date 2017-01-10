@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="ChromaCreator:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ChromaCreator_jar</output-path>
-    <root id="archive" name="ChromaCreator.jar">
-      <element id="module-output" name="ChromaCreator" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libraries/jdom-2.0.6.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
