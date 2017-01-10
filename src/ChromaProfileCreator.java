@@ -2,6 +2,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.lang.reflect.Field;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
 
@@ -21,6 +23,16 @@ public class ChromaProfileCreator {
     private static final int RAZER_KB_HEIGHT = 6;
     private static final int RAZER_KB_WIDTH = 22;
 
+    private static final String HELP_MESSAGE = "Chroma Profile Creator - Created by LVeilleux\n\n" +
+            "For bug fixes and feature requests, checkout this project's GitHub\n" +
+            "https://github.com/lveilleux/ChromaCreator\n" +
+            "This program allows you to convert any image into a custom RazerChroma static layer, with the\n" +
+            "addition of adding an OverLayer on top of the static image.\nCurrently supported OverLayers are:\n" +
+            "\t0:None\t1:Reactive Layer\t2:Ripple Layer\nThe color of this layer depends on the input color name.\n" +
+            "\nCommand Line Arguments:\n" +
+            "\t-h | -help: Display this message and exit.\n" +
+            "\tChromaProfileCreator [Path to Image] [Type of OverLayer] [String color name for OverLayer]";
+
     /**
      * Main function used when running the program without the GUI interface, calls the same methods, but requires
      * options be set as arguments at runtime.
@@ -29,23 +41,86 @@ public class ChromaProfileCreator {
     public static void main(String[] args) {
         String fileName;
         Color reactColor = null;
-        int layer = 0;
-        if (args.length == 0) {
-            Scanner in = new Scanner(System.in);
-            System.out.print("Please enter your image path and name: ");
-            fileName = in.next();
-        } else {
+        int layer = -1;
+        Scanner in = new Scanner(System.in);
+        if (args.length >= 1 &&  (args[0].equalsIgnoreCase("-h") || args[0].equalsIgnoreCase("-help"))) {
+            System.out.println(HELP_MESSAGE);
+            System.exit(0);
+        }
+        BufferedImage img = null;
+        boolean flag = false;
+        if (args.length >= 1) {
             fileName = args[0];
+            try {
+                img = importImage(fileName);
+            } catch (Exception ignored) {
+                System.out.println("Invalid FileName given as argument.");
+                flag = true;
+            }
         }
-        if (args.length > 1) {
-            reactColor = Color.getColor(args[1]);
-            layer = 1;
+        if (flag || args.length == 0) {
+            flag = true;
+            while (flag) {
+                try {
+                    System.out.print("Please enter your image path and name: ");
+                    fileName = in.nextLine();
+                    //Import the image into program
+                    img = importImage(fileName);
+                    flag = false;
+                } catch (Exception e) {
+                    System.out.println("\t\tInvalid File Name.");
+                }
+            }
         }
-        //Import the image into program
-        BufferedImage img = importImage(fileName);
-        //Export Profile
-        exportProfile(img, reactColor, layer);
-
+        if (args.length <= 1) {
+            while (layer < 0 || layer > 2) {
+                try {
+                    System.out.print("Enter a profile over layer (0: None, 1:Reactive, 2:Ripple): ");
+                    layer = in.nextInt();
+                } catch (NoSuchElementException ignored) {
+                    System.out.println("\tInvalid Input Detected.\tPlease enter valid input [0-2]");
+                    in.next();
+                }
+            }
+        } else {
+            layer = Integer.parseInt(args[1]);
+        }
+        if (args.length <= 2) {
+            if (layer == 1 || layer == 2) {
+                while (reactColor == null) {
+                    try {
+                        System.out.print("Enter a color name for the OverLayer (Ripple/Reactive Layer): ");
+                        Field temp = Color.class.getField(in.next().toLowerCase());
+                        reactColor = (Color) temp.get(null);
+                    } catch (NoSuchFieldException | IllegalAccessException ignored) {
+                        System.out.println("\tInvalid Input Detected.\tPlease enter a valid color name.");
+                    }
+                }
+            }
+        } else {
+            try {
+                Field tmp = Color.class.getField(args[2]);
+                reactColor = (Color) tmp.get(null);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+                System.exit(34);
+            }
+        }
+        try {
+            File temp = new File("output");
+            if (temp.mkdir() || temp.exists()) {
+                //Build & Export Profile
+                exportProfile(img, reactColor, layer);
+                for (File file : temp.listFiles()) {
+                    Files.delete(file.toPath());
+                }
+                temp.delete();
+            }
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
+            System.exit(99);
+        }
+        System.out.println("Profile Created");
     }
 
     /**
@@ -53,14 +128,14 @@ public class ChromaProfileCreator {
      * to the size of the keyboard, in this case the final image is coded to be 22 x 6.
      * @param fileName - Name of the image file to import.
      * @return - A copy of the image in the reduced size, to be shown on the GUI.
+     * @throws FileNotFoundException - Image file not found/Invalid
      */
-    protected static BufferedImage importImage(String fileName) {
+    protected static BufferedImage importImage(String fileName) throws FileNotFoundException {
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File(fileName));
         } catch (IOException e) {
-            System.out.println("Please enter a valid image file name.");
-            System.exit(32);
+            throw new FileNotFoundException(fileName);
         }
         String name = fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf("."));
         img = createResizedCopy(img, RAZER_KB_WIDTH, RAZER_KB_HEIGHT, true);

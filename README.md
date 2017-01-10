@@ -7,4 +7,3 @@ Coming up:
     > Save file output beyond dumping the file in the project directory.  
     > Optional Ripple Layer over the Static layer. (Choice of None, Ripple, or Reactive)  
     > Moving the Python script back into Java.  
-    > Finish updating the CLI to provide same functionality as GUI.

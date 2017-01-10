@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -75,8 +76,13 @@ public class GUIController implements Initializable {
             inputFileLabel.setText(imageFile.getAbsolutePath());
         }
         //Run Chroma Creator
-        BufferedImage img;
-        img = ChromaProfileCreator.importImage(inputFileLabel.getText());
+        BufferedImage img = null;
+        try {
+            img = ChromaProfileCreator.importImage(inputFileLabel.getText());
+        } catch (FileNotFoundException f) {
+            f.printStackTrace();
+            System.exit(45);
+        }
         exportProfileButton.setDisable(false);
         keyboardImage = img;
 
