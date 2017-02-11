@@ -1,3 +1,11 @@
+/*
+ * This file was created by Luke as part of the ChromaCreator project on GitHub located here:
+ *   https://github.com/lveilleux/ChromaCreator
+ * This project is Open Source to use, & any modifications must make it back to the GitHub repository of this project
+ * For questions/comments/problems goto the GitHub page above, or my website: www.lveilleux.me/Chroma
+ * Enjoy
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

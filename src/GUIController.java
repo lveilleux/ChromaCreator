@@ -1,3 +1,11 @@
+/*
+ * This file was created by Luke as part of the ChromaCreator project on GitHub located here:
+ *   https://github.com/lveilleux/ChromaCreator
+ * This project is Open Source to use, & any modifications must make it back to the GitHub repository of this project
+ * For questions/comments/problems goto the GitHub page above, or my website: www.lveilleux.me/Chroma
+ * Enjoy
+ */
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,15 +25,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Controls the GUI and connect to the core code.
+ * Controls the GUI and connects to the main implementation code.
  */
 public class GUIController implements Initializable {
+    //References to different GUI components
     @FXML
     private Label inputFileLabel = new Label();
     @FXML
@@ -33,31 +41,38 @@ public class GUIController implements Initializable {
     @FXML
     private CheckBox reactiveLayerCheck = new CheckBox();
     @FXML
-    private CheckBox rippleLayerCheck = new CheckBox();
-    @FXML
     private ColorPicker reactionColor = new ColorPicker();
     @FXML
     private ImageView imageView = new ImageView();
     @FXML
     private ComboBox<String> reactiveComboBox = new ComboBox<>();
-    @FXML
-    private Slider rippleLayerSlider = new Slider();
-
     private BufferedImage keyboardImage;
 
 
+    /**
+     * Initializes the the keyboard image reference stored within the GUI class, for the image view, and the combo
+     * box on the page that controls the reactive layer effect length.
+     * @param location - Unused
+     * @param resources - Unused
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         keyboardImage = null;
         List<String> list = new ArrayList<String>();
-        list.add("Quick");
+        list.add("Short");
         list.add("Medium");
         list.add("Long");
         ObservableList obList = FXCollections.observableList(list);
         reactiveComboBox.getItems().clear();
         reactiveComboBox.setItems(obList);
+        reactiveComboBox.getSelectionModel().selectFirst();
     }
 
+    /**
+     * Handles the input of files by allowing the user to use the file picker in the OS to select an image file for
+     * mapping to the keyboard.
+     * @param event - ActionEvent that allows access to the GUI elements
+     */
     @FXML
     protected void handleImageFileIntake(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -98,25 +113,18 @@ public class GUIController implements Initializable {
         imageView.setImage(image);
     }
 
+    /**
+     * Handles the actions that take place behind the scenes to build and export a profile into the .razerchroma
+     * file format. Allows the user to select a save location for the file using the OS file picker.
+     * @param event - ActionEvent that allows access to the GUI elements
+     */
     @FXML
-    protected void handleReactivePickerChecked(ActionEvent event) {
-        //Using Reactive, un-check Ripple
-        rippleLayerCheck.setSelected(false);
-    }
-
-    @FXML
-    protected void handleRipplePickerChecked(ActionEvent event) {
-        //Using Reactive, un-check Ripple
-        reactiveLayerCheck.setSelected(false);
-    }
-
-    @FXML
-    protected void handleExportProfileButton(ActionEvent event) throws IOException {
+    protected void handleExportProfileButton(ActionEvent event) {
         //Export Profile
         Color layerColor;
         java.awt.Color color = null;
         int layer = 0;
-        if(reactiveLayerCheck.isSelected() || rippleLayerCheck.isSelected()) {
+        if(reactiveLayerCheck.isSelected()) {
             layerColor = reactionColor.getValue();
             color = new java.awt.Color((float) layerColor.getRed(),
                     (float) layerColor.getGreen(),
@@ -125,20 +133,32 @@ public class GUIController implements Initializable {
         }
         if(reactiveLayerCheck.isSelected()) {
             layer = 1;
-        } else if (rippleLayerCheck.isSelected()) {
-            layer = 2;
         }
-        //TODO: Support Ripple Speed and Reactive Length
-        File temp = new File("output");
-        if(temp.mkdir() || temp.exists()) {
-            ChromaProfileCreator.exportProfile(keyboardImage, color, layer);
-            for (File file : temp.listFiles()) {
-                Files.delete(file.toPath());
-            }
-            temp.delete();
-        } else {
-            throw new IOException("Failed to create temporary directory, please try again");
-        }
-        System.out.println("Profile Created");
+        int reactLength = 0;
+        String react = reactiveComboBox.getSelectionModel().getSelectedItem();
+        if (react == null)
+            reactLength = 500;
+        else if (react.equals("Short"))
+            reactLength = 500;
+        else if (react.equals("Medium"))
+            reactLength = 1500;
+        else if (react.equals("Long"))
+            reactLength = 2000;
+        ChromaProfileCreator.exportProfile(keyboardImage, color, layer, reactLength);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Save Location");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("RazerChroma", "*.razerchroma")
+        );
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        File saveFile = fileChooser.showSaveDialog(stage);
+        ChromaProfileCreator.saveFinalOutputFile(saveFile);
+        //Alert the user the profile was created
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Your RazerChroma profile was successfully created");
+        alert.showAndWait();
     }
 }
