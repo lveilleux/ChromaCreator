@@ -10,10 +10,7 @@ import org.jdom2.Document;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.zip.ZipEntry;
@@ -71,6 +68,16 @@ public class ZipOutput {
         ZipEntry zipEntry = new ZipEntry(fileName);
         zipFile.putNextEntry(zipEntry);
         File file = new File(fileName);
+
+        byte[] buffer = new byte[1024];
+        FileInputStream input = new FileInputStream(file);
+        int length;
+        while((length = input.read(buffer)) > 0) {
+            zipFile.write(buffer, 0, length);
+        }
+        zipFile.closeEntry();
+        input.close();
+
         if(!file.delete())
             System.out.println(fileName + " file was not deleted automatically.");
     }

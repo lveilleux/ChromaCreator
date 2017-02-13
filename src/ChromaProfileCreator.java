@@ -60,6 +60,8 @@ public class ChromaProfileCreator {
                 try {
                     System.out.print("Please enter your image path and name: ");
                     fileName = in.nextLine();
+                    if (fileName.charAt(0) == '\"' && fileName.charAt(fileName.length() - 1) == '\"')
+                        fileName = fileName.substring(1, fileName.length() - 1);
                     //Import the image into program
                     img = importImage(fileName);
                     flag = false;
@@ -68,6 +70,7 @@ public class ChromaProfileCreator {
                 }
             }
         }
+        int reactLength = 0;
         if (args.length <= 1) {
             while (layer < 0 || layer > 1) {
                 try {
@@ -78,6 +81,14 @@ public class ChromaProfileCreator {
                     in.next();
                 }
             }
+            try {
+                System.out.println("Enter the desired react timing (Short-500, Medium-1500, Long-2000): ");
+                reactLength = in.nextInt();
+            } catch (NoSuchElementException ignored) {
+                System.out.println("Found invalid react time, using default 500.");
+                reactLength = 500;
+            }
+            in.nextLine();
         } else {
             layer = Integer.parseInt(args[1]);
         }
@@ -89,7 +100,8 @@ public class ChromaProfileCreator {
                         Field temp = Color.class.getField(in.next().toLowerCase());
                         reactColor = (Color) temp.get(null);
                     } catch (NoSuchFieldException | IllegalAccessException ignored) {
-                        System.out.println("\tInvalid Input Detected.\tPlease enter a valid color name.");
+                        System.out.println("\tInvalid Input Detected.\tPlease enter a valid color name.\n" +
+                                "\t\t(white, gray, black, red, pink, orange, yellow, green, magenta, cyan, blue)");
                     }
                 }
             }
@@ -103,13 +115,15 @@ public class ChromaProfileCreator {
             }
         }
         //Build & Export Profile
-        exportProfile(img, reactColor, layer, 500);
+        exportProfile(img, reactColor, layer, reactLength);
         //Save output .razerchroma file to desired location
         String output = "";
         in.nextLine();
         while(output.equals("")) {
             System.out.println("Please enter your output file name (and directory): ");
             output = in.nextLine();
+            if (output.charAt(0) == '\"' && output.charAt(output.length() - 1) == '\"')
+                output = output.substring(1, output.length() - 1);
         }
         saveFinalOutputFile(new File(output));
         System.out.println("Profile Created");
