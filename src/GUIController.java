@@ -144,7 +144,6 @@ public class GUIController implements Initializable {
             reactLength = 1500;
         else if (react.equals("Long"))
             reactLength = 2000;
-        ChromaProfileCreator.exportProfile(keyboardImage, color, layer, reactLength);
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Save Location");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -153,6 +152,10 @@ public class GUIController implements Initializable {
         );
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         File saveFile = fileChooser.showSaveDialog(stage);
+        if (saveFile == null){
+            return;
+        }
+        ChromaProfileCreator.exportProfile(keyboardImage, color, layer, reactLength);
         ChromaProfileCreator.saveFinalOutputFile(saveFile);
         //Alert the user the profile was created
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
