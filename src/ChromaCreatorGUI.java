@@ -24,7 +24,7 @@ public class ChromaCreatorGUI extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(this.getClass().getResource("main.fxml"));
-            Scene home = new Scene(root, 600.0D, 400.0D);
+            Scene home = new Scene(root, 800.0D, 600.0D);
             primaryStage.setScene(home);
             primaryStage.setTitle("Chroma Profile Creator");
             primaryStage.show();
