@@ -157,14 +157,15 @@ public class ChromaProfileCreator {
      * @param layer - Which profile to create over the static image. [0=None, 1=Reactive]
      */
     protected static void exportProfile(BufferedImage img, Color overColor, int layer, int reactLength) {
+        XMLCreator creator = new XMLCreator();
         //Create zipfile for XML to write out to
         try {
             ZipOutput.getReference().createZipFile("Chroma.zip");
             //Build separate XML files
-            String staticName = XMLCreator.buildStaticXMLFile(img);
+            String staticName = creator.buildStaticXMLFile(img);
             String reactName = "";
             if (overColor != null) {
-                reactName = XMLCreator.buildReactXMLFile(overColor, reactLength);
+                reactName = creator.buildReactXMLFile(overColor, reactLength);
             }
             //Build Control XML file
             String[] files;
@@ -172,7 +173,7 @@ public class ChromaProfileCreator {
                 files = new String[]{staticName, reactName};
             else
                 files = new String[]{staticName};
-            XMLCreator.buildControlXMLFile(files);
+            creator.buildControlXMLFile(files);
             ZipOutput.getReference().closeZipFile();
         } catch (IOException e) {
             e.printStackTrace();

@@ -6,6 +6,7 @@
  * Enjoy
  */
 
+import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -26,6 +27,7 @@ public class XMLCreator {
     protected static final int RAZER_KB_HEIGHT = 6;
     protected static final int RAZER_KB_WIDTH = 22;
 
+    protected static final String VERSION_NUMBER = "1.49";
 
     /**
      * Constructor method for the XMLCreator class.
@@ -39,7 +41,7 @@ public class XMLCreator {
      * @param image - Image used to create static profile
      * @return - Name of the created XML file
      */
-    protected static String buildStaticXMLFile(BufferedImage image) {
+    protected String buildStaticXMLFile(BufferedImage image) {
         //Find all different colors in the image
         Color[][] result = new Color[RAZER_KB_HEIGHT][RAZER_KB_WIDTH];
 
@@ -56,9 +58,7 @@ public class XMLCreator {
         int ID = 0;
         String fileName = "static.xml";
         try {
-            File inputFile = new File("template/static.xml");
-            SAXBuilder saxBuilder = new SAXBuilder();
-            Document document = saxBuilder.build(inputFile);
+            Document document = createLayerXML("STATIC");
             Element rootElement = document.getRootElement();
 
             Element keyColorElement = rootElement.getChild("LayerKeys");
@@ -99,7 +99,7 @@ public class XMLCreator {
                 groupList.add(group);
             }
             ZipOutput.getReference().outputToZipFile(document, fileName);
-        } catch (JDOMException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return fileName;
@@ -128,12 +128,10 @@ public class XMLCreator {
      * @param color - Color to show on key press on the keyboard
      * @return - Name of the created XML file
      */
-    protected static String buildReactXMLFile(Color color, int length) {
+    protected String buildReactXMLFile(Color color, int length) {
         String fileName = "reactive.xml";
         try {
-            File inputFile = new File("template/reactive.xml");
-            SAXBuilder saxBuilder = new SAXBuilder();
-            Document document = saxBuilder.build(inputFile);
+            Document document = createLayerXML("REACTIVE");
             Element rootElement = document.getRootElement();
             Element keyColorElement = rootElement.getChild("LayerKeys");
             java.util.List<Element> list = keyColorElement.getChildren();
@@ -165,7 +163,7 @@ public class XMLCreator {
             //Set the duration of the Reactive Layer
             group.getChild("EfxReactive").getChild("Duration").setText(Integer.toString(length));
             ZipOutput.getReference().outputToZipFile(document, fileName);
-        } catch (JDOMException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return fileName;
@@ -176,12 +174,10 @@ public class XMLCreator {
      * connects and layers all layers created earlier.
      * @param fileNames - Names of all the layer XML files created
      */
-    protected static void buildControlXMLFile(String[] fileNames) {
+    protected void buildControlXMLFile(String[] fileNames) {
         String fileName = "controller.xml";
         try {
-            File inputFile = new File("template/control.xml");
-            SAXBuilder saxBuilder = new SAXBuilder();
-            Document document = saxBuilder.build(inputFile);
+            Document document = createControlXML();
             Element rootElement = document.getRootElement();
             java.util.List<Element> tiersList = rootElement.getChildren("Tier");
             Element template = tiersList.get(0).clone();
@@ -194,8 +190,72 @@ public class XMLCreator {
                 tiersList.add(temp);
             }
             ZipOutput.getReference().outputToZipFile(document, fileName);
-        } catch (JDOMException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Private function used to create a basic layer XML file used by RazerChroma.
+     * Will build basic static and reactive layer files
+     * @param effect - Effect type of xml to build ["STATIC", "REACTIVE"]
+     * @return - template XML document
+     */
+    private static Document createLayerXML(String effect){
+        Document document = new Document();
+        Element root = new Element("RGBLayer");
+        root.setAttribute(new Attribute("effect", effect));
+        root.setAttribute(new Attribute("enabled", "1"));
+        root.addContent(new Element("Version").setText(VERSION_NUMBER));
+        //LayerKeys
+        Element layerkeys = new Element("LayerKeys");
+        Element key = new Element("LayerKey").setAttribute(new Attribute("row", "0"));
+        key.setAttribute(new Attribute("column", "7")).setAttribute(new Attribute("id", "0"));
+        layerkeys.addContent(key);
+        root.addContent(layerkeys);
+        // GROUPS
+        Element Groups = new Element("Groups");
+        Element group = new Element("Group").setAttribute(new Attribute("id", "0"));
+        Element efx;
+        Element color = new Element("Color").setAttribute(new Attribute("random", "0"));
+        if (effect.equals("STATIC")) {
+            efx = new Element("EfxStatic");
+        } else if (effect.equals("REACTIVE")) {
+            efx = new Element("EfxReactive");
+            color.setAttribute(new Attribute("id", "1")); //Special Requirement for Reactive Layers
+        } else {
+            efx = new Element("EFX");
+        }
+        color.addContent(new Element("Red").setText("0"));
+        color.addContent(new Element("Green").setText("255"));
+        color.addContent(new Element("Blue").setText("0"));
+        efx.addContent(color);
+        if(effect.equals("REACTIVE"))
+            efx.addContent(new Element("Duration").setText("500"));
+        group.addContent(efx);
+        Groups.addContent(group);
+        root.addContent(Groups);
+
+        document.setContent(root);
+        return document;
+    }
+
+    /**
+     * Private function used to create a basic control XML file used by RazerChroma.
+     * Again, currently only supports keyboard profiles.
+     * @return - template XML document
+     */
+    private static Document createControlXML(){
+        Document document = new Document();
+        Element root = new Element("Tiers");
+        root.addContent(new Element("Version").setText(VERSION_NUMBER));
+        root.addContent(new Element("DeviceType").setText("KEYBOARD"));
+        root.addContent(new Element("PID").setText("544"));
+        Element tier = new Element("Tier").setAttribute(new Attribute("level", "0"));
+        tier.addContent(new Element("UUID").setText("static"));
+        root.addContent(tier);
+        document.setContent(root);
+        return document;
+    }
+
 }
