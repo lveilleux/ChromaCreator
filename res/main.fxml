@@ -6,6 +6,9 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,7 +20,28 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
    <children>
-      <GridPane alignment="CENTER" layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0">
+      <MenuBar prefHeight="20.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleMenuBar_Close" text="Close" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Install Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuBar_Razer2" text="RazerChroma 2.0 Instructions" />
+                  <MenuItem disable="true" mnemonicParsing="false" onAction="#handleMenuBar_Razer3" text="RazerChroma 3.0 Instructions" />
+                  <MenuItem disable="true" mnemonicParsing="false" onAction="#handleMenuBar_CUE" text="CUE Instructions" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuBar_About" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <GridPane alignment="CENTER" layoutX="1.0" layoutY="25.0" prefHeight="574.0" prefWidth="800.0" AnchorPane.topAnchor="25.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

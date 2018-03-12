@@ -10,15 +10,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -95,6 +99,8 @@ public class GUIController implements Initializable {
         try {
             img = ChromaProfileCreator.importImage(inputFileLabel.getText());
         } catch (FileNotFoundException f) {
+            if (inputFileLabel.getText().equals("Input File"))
+                return;
             f.printStackTrace();
             System.exit(45);
         }
@@ -164,4 +170,48 @@ public class GUIController implements Initializable {
         alert.setContentText("Your RazerChroma profile was successfully created");
         alert.showAndWait();
     }
+
+    @FXML
+    protected void handleMenuBar_Close(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    protected void handleMenuBar_About(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About ChromaCreator");
+        alert.setHeaderText("ChromaCreator v0.1");
+        alert.setContentText("ChromaCreator was created and maintained by Luke Veilleux. See the project's GitHub " +
+                "repository for errors/features/etc.\n\thttps://github.com/lveilleux/chromacreator");
+        alert.showAndWait();
+    }
+
+    @FXML
+    protected void handleMenuBar_Razer2(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("instructions.fxml"));
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(new Scene(loader.load()));
+        InstallInstructionController controller = loader.<InstallInstructionController>getController();
+        controller.setInstructionSet(InstallInstructionController.AppId.RAZER2);
+    }
+
+    @FXML
+    protected void handleMenuBar_Razer3(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("instructions.fxml"));
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(new Scene(loader.load()));
+        InstallInstructionController controller = loader.<InstallInstructionController>getController();
+        controller.setInstructionSet(InstallInstructionController.AppId.RAZER3);
+    }
+
+    @FXML
+    protected void handleMenuBar_CUE(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("instructions.fxml"));
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(new Scene(loader.load()));
+        InstallInstructionController controller = loader.<InstallInstructionController>getController();
+        controller.setInstructionSet(InstallInstructionController.AppId.CUE);
+    }
+
 }
+

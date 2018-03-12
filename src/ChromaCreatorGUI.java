@@ -32,6 +32,7 @@ public class ChromaCreatorGUI extends Application {
             System.out.println("IO Error occurred loading the GUI, please try again.\nIf the problem" +
                     " persists, contact the developers at the GitHub repository.");
             e.printStackTrace();
+            System.exit(1);
         }
     }
 }
